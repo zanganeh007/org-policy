@@ -1,0 +1,27 @@
+name: org-policy
+on:
+  workflow_call:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # checkout this policy repo to access the checker script
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/org-policy
+          path: .org-policy
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run org-wide policy checker
+        run: |
+          set -euxo pipefail
+          python .org-policy/checker/verify_org_policy.py
