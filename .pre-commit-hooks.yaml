@@ -2,6 +2,5 @@
   name: org-policy verify
   description: Enforce MULTI_DOCUMENT_ENTERPRISE_CODING_PRINCIPLES (P1..P18) and required docs.
   entry: python checker/verify_org_policy.py
-  language: python
-  language_version: python3
+  language: system
   pass_filenames: false
